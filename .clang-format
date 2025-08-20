@@ -1,0 +1,18 @@
+# .clang-format
+BasedOnStyle: Google
+IndentWidth: 2
+TabWidth: 2
+UseTab: Never
+ColumnLimit: 100
+AccessModifierOffset: -4
+AlignTrailingComments: true
+BinPackParameters: false
+BreakBeforeBinaryOperators: None
+BreakBeforeBraces: Attach
+BreakBeforeConceptDeclarations: true
+BreakBeforeInheritanceComma: true
+CompactNamespaces: false
+Cpp11BracedListStyle: true
+FixNamespaceComments: true
+NamespaceIndentation: None
+SortIncludes: false # Let specific include sorters handle this or disable for manual control

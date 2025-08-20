@@ -1,0 +1,37 @@
+# OS generated files
+.DS_Store
+.vscode/
+Thumbs.db
+
+# Build artifacts
+*.o
+*.so
+*.dylib
+*.dll
+*.exe
+build/
+install/
+log/
+__pycache__/
+*.pyc
+
+# IDE and Editor specific files
+.idea/
+*.swp
+*~
+
+# Python specific
+venv/
+.env
+
+# ROS2 specific (inside skyautonet_birdro_ws/)
+# These are handled by the workspace's .gitignore if it exists,
+# but can be added here for global coverage.
+# colcon_ws/build/
+# colcon_ws/install/
+# colcon_ws/log/
+
+
+# Configuration files that are user-specific or sensitive
+*.local
+*.secret

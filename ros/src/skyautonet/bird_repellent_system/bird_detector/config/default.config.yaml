@@ -1,0 +1,14 @@
+/**:
+  ros__parameters:
+    # hailo model parameters
+    label_text_path: "bird_class_list.txt"
+    hailo_model: "bird_v5s.hef" # **Bird로 학습된 YOLOv5
+    box_thresh: 0.5
+
+    # common parameters
+    is_compressed: false
+    
+    # debug parameters
+    debug_mode: false
+    save_image: false
+    save_image_path: ""

@@ -1,0 +1,49 @@
+# ViT 군집 형태 분류 모델 학습 과정 요약
+
+이 문서는 YOLOv5 탐지 결과를 기반으로 새 군집 형태를 분류하는 ViT 모델을 학습시키는 단계를 요약합니다.
+
+## 1단계: (선택 사항) 더미 데이터셋 생성
+
+**목표:** 실제 데이터가 없을 경우, ViT 모델 학습을 위한 더미 중심점 이미지를 생성합니다.
+
+**절차:**
+1.  `train_flock_analyzer` 디렉토리로 이동합니다.
+    ```bash
+    cd /home/saop/flock_analyzer/train_flock_analyzer
+    ```
+2.  더미 데이터 생성 스크립트를 실행합니다.
+    ```bash
+    python dummy_generator_for_ViT_input.py
+    ```
+3.  스크립트가 실행되면 `train_flock_analyzer/dataset/` 디렉토리 아래에 `V-shape`, `Line`, `Ring`, `dispersed` 등의 클래스별로 더미 이미지가 생성됩니다.
+
+**예시 디렉토리 구조:**
+```
+/home/saop/flock_analyzer/train_flock_analyzer/dataset/
+├── V-shape/
+│   ├── pattern_image1.jpg
+│   └── pattern_image5.jpg
+├── linear/
+│   ├── pattern_image2.jpg
+│   └── pattern_image6.jpg
+└── ...
+```
+
+## 2단계: ViT 모델 학습
+
+**목표:** 1단계 준비된 데이터셋을 사용하여 ViT 모델을 학습시킵니다.
+
+**절차:**
+1.  `train_flock_analyzer` 디렉토리로 이동합니다.
+    ```bash
+    cd /home/saop/flock_analyzer/train_flock_analyzer
+    ```
+2.  다음 명령어를 실행하여 ViT 모델 학습을 시작합니다.
+    ```bash
+    python train_flock_analyzer.py
+    ```
+3.  학습이 완료되면, 학습된 모델 가중치 파일 `analyzer_ViT.pth`가 `/home/saop/flock_analyzer/models/` 디렉토리에 저장됩니다.
+
+**참고:**
+*   학습 과정 중 에포크별 손실(Loss) 및 정확도(Accuracy)가 출력됩니다.
+*   데이터셋의 크기와 모델의 복잡성에 따라 학습 시간은 달라질 수 있습니다.

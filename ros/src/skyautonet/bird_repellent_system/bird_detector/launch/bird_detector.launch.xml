@@ -1,0 +1,27 @@
+<launch>
+  <group>
+    <arg name="input_image"       default="/camera/image_raw"/>
+    <arg name="output_bird_info"  default="/bird_system/bird/info"/>
+    <arg name="output_bird_image" default="/bird_system/bird/image_raw"/>
+    <arg name="output_flock_analysis" default="/bird_system/flock_analysis"/>
+    <arg name="config_file"       default="$(find-pkg-share bird_detector)/config/default.config.yaml"/>
+  
+    <node pkg="bird_detector" exec="bird_detector_node" name="bird_detector_node" output="screen" >
+      <remap from="in/image"                       to="$(var input_image)"/>
+      <remap from="in/image/compressed"            to="$(var input_image)/compressed"/>
+      <remap from="out/bird/info"                  to="$(var output_bird_info)"/>
+      <remap from="out/bird/image"                 to="$(var output_bird_image)"/>
+      <remap from="out/bird/image/compressed"      to="$(var output_bird_image)/compressed"/>
+      <remap from="out/bird/image/compressedDepth" to="$(var output_bird_image)/compressedDepth"/>
+      <remap from="out/bird/image/theora"          to="$(var output_bird_image)/theora"/>
+
+      <param name="model_path" type="str" value="$(find-pkg-share bird_detector)/models/"/>
+      <param from="$(var config_file)"/>
+    </node>
+
+    <node pkg="bird_detector" exec="flock_analyzer_node" name="flock_analyzer_node" output="screen">
+      <remap from="detected_objects" to="$(var output_bird_info)"/>
+      <remap from="flock_analysis"   to="$(var output_flock_analysis)"/>
+    </node>
+  </group>
+</launch>
